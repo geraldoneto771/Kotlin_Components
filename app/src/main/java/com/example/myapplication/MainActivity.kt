@@ -29,6 +29,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, SeekBar.OnSeekBa
         //switch
         switch_on_off.setOnCheckedChangeListener(this)
 
+        // chekbox
+        check_on_off.setOnCheckedChangeListener(this)
+
     }
 
     override fun onClick(v: View) {
@@ -69,6 +72,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, SeekBar.OnSeekBa
             R.id.button_set_seekbar -> {
                 seekbar.progress = 15
             }
+
         }
     }
 
@@ -95,6 +99,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, SeekBar.OnSeekBa
                 // switch_on_off.isChecked = true
                 toast("Switch ${if(isChecked) "true" else "false"}")
 
+            }
+
+            //ckeckbox
+            R.id.check_on_off -> {
+                toast("Checkbox ${if(isChecked) "true" else "false"}")
+                check_on_off.isChecked = true
             }
         }
     }
