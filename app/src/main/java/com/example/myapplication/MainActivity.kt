@@ -6,14 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
-import android.widget.CompoundButton
-import android.widget.SeekBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), View.OnClickListener, SeekBar.OnSeekBarChangeListener, CompoundButton.OnCheckedChangeListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, SeekBar.OnSeekBarChangeListener,
+    CompoundButton.OnCheckedChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,10 +30,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, SeekBar.OnSeekBa
         // chekbox
         check_on_off.setOnCheckedChangeListener(this)
 
+        // RadioButtom
+        radio_on.setOnCheckedChangeListener(this)
+        radio_off.setOnCheckedChangeListener(this)
+
+        // progress
+
+
+
     }
 
     override fun onClick(v: View) {
-        when (v.id){
+        when (v.id) {
             // toast
             R.id.button_toast -> {
                 val toast = Toast.makeText(this, "TOAST", Toast.LENGTH_LONG)
@@ -76,7 +82,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, SeekBar.OnSeekBa
         }
     }
 
-    private fun toast(str: String){
+    private fun toast(str: String) {
         Toast.makeText(this, str, Toast.LENGTH_LONG).show()
     }
 
@@ -94,18 +100,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, SeekBar.OnSeekBa
 
     //switch
     override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
-        when(buttonView.id){
+        when (buttonView.id) {
             R.id.switch_on_off -> {
                 // switch_on_off.isChecked = true
-                toast("Switch ${if(isChecked) "true" else "false"}")
+                toast("Switch ${if (isChecked) "true" else "false"}")
 
+                progress.visibility = View.GONE
             }
 
             //ckeckbox
             R.id.check_on_off -> {
-                toast("Checkbox ${if(isChecked) "true" else "false"}")
+                toast("Checkbox ${if (isChecked) "true" else "false"}")
                 check_on_off.isChecked = true
             }
+
+            // RadioButtom
+            R.id.radio_on -> {
+                toast("Radio on: ${if (isChecked) "true" else "false"}")
+            }
+
+            // RadioButtom
+            R.id.radio_off -> {
+                toast("Radio off: ${if (isChecked) "true" else "false"}")
+            }
+
         }
     }
 }
