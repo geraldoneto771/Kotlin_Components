@@ -6,13 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.widget.CompoundButton
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), View.OnClickListener, SeekBar.OnSeekBarChangeListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, SeekBar.OnSeekBarChangeListener, CompoundButton.OnCheckedChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,6 +25,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, SeekBar.OnSeekBa
         button_set_seekbar.setOnClickListener(this)
 
         seekbar.setOnSeekBarChangeListener(this)
+
+        //switch
+        switch_on_off.setOnCheckedChangeListener(this)
+
     }
 
     override fun onClick(v: View) {
@@ -81,5 +86,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, SeekBar.OnSeekBa
 
     override fun onStopTrackingTouch(seekBar: SeekBar?) {
         toast("Track stoped")
+    }
+
+    //switch
+    override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
+        when(buttonView.id){
+            R.id.switch_on_off -> {
+                // switch_on_off.isChecked = true
+                toast("Switch ${if(isChecked) "true" else "false"}")
+
+            }
+        }
     }
 }
